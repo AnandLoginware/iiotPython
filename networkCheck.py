@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import subprocess
 from time import sleep
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(36,GPIO.OUT)
+GPIO.setup(40,GPIO.OUT)
 
 
 def checkNetworkConnection():
@@ -13,11 +13,11 @@ def checkNetworkConnection():
         finalResult=result.communicate()
         print(finalResult)
         if (b'eth0: no link\n' in finalResult and flag == 0):
-            GPIO.output(36,False)
+            GPIO.output(40,False)
             print("led off")
             flag = 1
         elif (b'eth0: negotiated 100baseTx-FD flow-control, link ok\n' in finalResult and flag == 1):
-            GPIO.output(36,True)
+            GPIO.output(40,True)
             print("led on")
             flag = 0
         else:
